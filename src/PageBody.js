@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './assets/PageBody.css';
 
-import Facts from './Facts';
-
 class PageBody extends Component {
   constructor() {
     super();
@@ -13,19 +11,23 @@ class PageBody extends Component {
     fact: {
       title: 'Click the button to get a dino fact!',
       text: ''
-    },
-    previousFactIndex: null
+    }
   }
 
   _onGetFactClick() {
-    const randomIndex = Math.floor(Math.random() * Math.floor(Facts.length))
-    if (randomIndex === this.state.previousFactIndex) {
-      return this._onGetFactClick();
-    }
-
-    this.setState({
-      fact: Facts[randomIndex],
-      previousFactIndex: randomIndex
+    fetch('http://localhost:4000/facts/dino', {
+      dataType: 'JSON',
+      headers: {
+        'Content-Type': 'application/json',
+         'Accept': 'application/json',
+      },
+      method: 'GET',
+      mode: 'cors'
+    })
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(res => {
+      this.setState({ fact: res.body });
     });
   }
 
