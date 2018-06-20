@@ -5,8 +5,6 @@ This is a small react application which will generate dinosaur facts when clicki
 
 ![](http://g.recordit.co/XQz8PO2NIY.gif)
 
----
-
 **Install dependencies**
 
 ```sh
@@ -17,4 +15,16 @@ $ npm install
 
 ```sh
 $ npm start
+```
+
+**Build the docker image**
+
+```sh
+$ docker build -t dinojs/client .
+```
+
+**Run the image**
+
+```sh
+$ docker run -d -p 3000:3000 dinojs/client
 ```
