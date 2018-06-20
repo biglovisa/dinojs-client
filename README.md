@@ -18,3 +18,15 @@ $ npm install
 ```sh
 $ npm start
 ```
+
+**Build the docker image**
+
+```sh
+$ docker build -t dinojs/client .
+```
+
+**Run the image**
+
+```sh
+$ docker run -d -p 3000:3000 dinojs/client
+```
